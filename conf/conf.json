@@ -1,0 +1,14 @@
+{
+    "about": { 
+    	"version": "0.0.2",
+    	"author": "Alex Pisarkov",
+    	"mail": "sanya-poison@mail.ru",
+    	"company": "Rich Code"
+    },	
+    "language": {
+    	"default": "ru",
+    	"list": [
+    		"ru"	
+    	]
+    }       
+}

@@ -1,0 +1,39 @@
+/*
+    Подключение разных шрифтов
+    src: url("../fonts/RobotoRegular/RobotoRegular.eot");
+    src: url("../fonts/RobotoRegular/RobotoRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/RobotoRegular/RobotoRegular.woff") format("woff"),
+    url("../fonts/RobotoRegular/RobotoRegular.ttf") format("truetype");
+*/
+
+/* font-family: "Ubuntu-Bold"; */
+@font-face {
+    font-family: "Ubuntu-Bold";
+    src: local("Ubuntu-Bold"), url("../fonts/ubuntu-font-family/Ubuntu-B.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* font-family: "Ubuntu-Medium"; */
+@font-face {
+    font-family: "Ubuntu-Medium";
+    src: local("Ubuntu-Medium"), url("../fonts/ubuntu-font-family/Ubuntu-M.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* font-family: "Ubuntu-Light"; */
+@font-face {
+    font-family: "Ubuntu-Light";
+    src: local("Ubuntu-Light"), url("../fonts/ubuntu-font-family/Ubuntu-L.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* font-family: "Ubuntu"; */
+@font-face {
+    font-family: "Ubuntu";
+    src: local("Ubuntu"), url("../fonts/ubuntu-font-family/Ubuntu-R.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
