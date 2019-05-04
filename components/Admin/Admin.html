@@ -1,0 +1,165 @@
+<div class="container" id="Admin">
+    <div class="row" id="admin_container">
+        <div class="col-md-4" id="admin_container_left">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ admin.add_panel.title }}</h3>
+                </div>
+                <form role="form" v-on:submit.prevent="add_admin_entity">
+                    <div class="panel-body panel-body-form-nopadd">	
+                    	<fieldset>		                
+	                        <div class="form-group" v-bind:class="{ 'has-error': input_add_table_name_valedate }">
+	                            <input class="form-control" placeholder="{{ admin.add_panel.input_name.placeholder }}" name="{{ admin.add_panel.input_name.name }}" type="{{ admin.add_panel.input_name.type }}" v-model="input_add_table_name">
+	                        </div>                            	                	
+	                	</fieldset>        
+                    </div>    
+                    <div class="panel-footer">	
+                    	<input class="btn btn-success" type="submit" value="{{ admin.add_panel.add_button.title }}">
+                    </div>	         
+                </form>                
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{ admin.list_table_panel.title }}   
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div id="list_table" class="list-group">
+                        <a class="list-group-item" v-for="admin_entity in admin_list_entitys" data-entity_id="{{ admin_entity.ENTITY }}" v-bind:class="hasActiveClass(admin_entity)">
+                        	<table class="list-group-item-name-container-table">
+                        		<tr>
+                        			<td class="list-group-item-name-container-table-td">
+			                            <b class="list-group-item-name-container" @click="edit_admin_entity(admin_entity)">
+			                            	<div class="list-group-item-name">
+			                            		{{ admin_entity.NAME }}
+			                            	</div>	
+			                            </b>
+			                        </td>
+			                        <td>    
+			                            <div class="pull-right">
+			                                <button class="btn btn-danger btn-xs btn_del_table" @click="delete_admin_entity(admin_entity)"><i class="fa fa-times"></i></button>
+			                            </div>
+			                        </td>
+			                    </tr>
+			                </table>            
+                        </a>                     
+                    </div>              
+                </div>
+            </div>          
+        </div>
+        <div class="col-md-4" id="admin_container_center" v-bind:class="{ 'admin_table_edit_show': current_select_admin_table != null }">
+        	<div class="panel panel-default" id="admin_container_add_table_properties">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ admin.add_table_properties_panel.title }}</h3>
+                </div>
+				<form role="form" v-on:submit.prevent="add_admin_entity_items_property">
+				    <div class="panel-body panel-body-form-nopadd">	
+				    	<fieldset>	
+				            <div class="form-group" v-bind:class="{ 'has-error': input_add_items_name_valedate }">
+				                <input class="form-control" placeholder="{{ admin.add_table_properties_panel.input_name.placeholder }}" name="{{ admin.add_table_properties_panel.input_name.name }}" type="{{ admin.add_table_properties_panel.input_name.type }}" v-model="input_add_items_name">
+				            </div>   
+				            <div class="form-group" v-bind:class="{ 'has-error': input_add_items_sort_valedate }">
+				            	<input class="form-control" placeholder="{{ admin.add_table_properties_panel.input_sort.placeholder }}" name="{{ admin.add_table_properties_panel.input_sort.name }}" type="{{ admin.add_table_properties_panel.input_sort.type }}" v-model="input_add_items_sort">
+				            </div>                        	                	
+				    	</fieldset>        
+				    </div>    
+				    <div class="panel-footer">	
+				    	<input class="btn btn-success" type="submit" value="{{ admin.add_table_properties_panel.add_button.title }}">
+				    </div>	         
+				</form>
+            </div>                        
+
+            <div class="panel panel-default" id="admin_container_list_table_properties">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ admin.list_table_properties_panel.title }}</h3>
+                </div>
+                <div class="panel-body">
+					<div id="list_table_properties" class="list-group">
+                        <a class="list-group-item" v-for="admin_property in admin_list_entity_properties" data-property_id="{{ admin_property.PROPERTY }}" v-bind:class="hasActivePropertyClass(admin_property)">
+                        	<table class="list-group-item-name-container-properties">
+                        		<tr>
+                        			<td class="list-group-item-name-container-properties-td">
+			                            <table class="list-group-item-name-container-properties-name" @click="edit_admin_property(admin_property)">
+			                            	<tr>
+			                            		<td class="list-group-item-name-container-properties-name-td-left">
+						                            <b class="list-group-item-name-container">
+						                            	<div class="list-group-item-name">
+						                            		{{ admin_property.NAME }}
+						                            	</div>	
+						                            </b>
+						                        </td>
+						                        <td class="list-group-item-name-container-properties-name-td-right">    
+					                            	<span class="badge">{{ admin_property.SORT }}</span>
+					                            </td>					                            
+				                        	</tr>
+			                            </table>
+			                        </td>
+			                        <td>    
+			                            <div class="pull-right">
+			                                <button class="btn btn-danger btn-xs btn_del_table" @click="delete_admin_property(admin_property)"><i class="fa fa-times"></i></button>
+			                            </div>
+			                        </td>
+			                    </tr>
+			                </table>            
+                        </a>                     
+                    </div>                                 
+                </div>
+            </div>                        
+        </div> 
+        <div class="col-md-4" id="admin_container_right" v-bind:class="{ 'admin_table_edit_show': current_select_admin_table != null }">
+			<div class="panel panel-default" id="admin_container_edit_table">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ admin.edit_table_panel.title }}</h3>
+                </div>
+                
+				<form class="form-horizontal" role="form" v-on:submit.prevent="update_admin_entity">
+				    <div class="panel-body panel-body-form-nopadd">	
+					    <fieldset>
+					    
+					        <div class="form-group">
+                                <label class="col-md-4 control-label">{{ admin.edit_table_panel.input_name.label }}</label>	
+					            <div class="col-md-8" v-bind:class="{ 'has-error': input_update_table_name_valedate }">
+					                <input name="{{ admin.edit_table_panel.input_name.name }}" type="{{ admin.edit_table_panel.input_name.type }}" placeholder="{{ admin.edit_table_panel.input_name.placeholder }}" class="form-control" v-model="input_update_table_name">
+					            </div>
+					        </div>
+					    					        					        
+					    </fieldset>
+					</div>    
+
+					<div class="panel-footer">
+					    <button type="submit" class="btn btn-success">{{ admin.edit_table_panel.update_button.title }}</button>
+					</div>	
+				</form>                                               
+            </div>  
+			<div class="panel panel-default" id="admin_container_edit_property" v-bind:class="{ 'admin_property_edit_show': current_select_admin_property != null }">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ admin.edit_table_properties_panel.title }}</h3>
+                </div>  
+				<form role="form" class="form-horizontal" v-on:submit.prevent="update_admin_entity_items_property">
+				    <div class="panel-body panel-body-form-nopadd">	
+				    	<fieldset>		                
+				            <div class="form-group">
+				            	<label class="col-md-4 control-label">{{ admin.edit_table_properties_panel.input_name.label }}</label>
+				            	<div class="col-md-8" v-bind:class="{ 'has-error': input_update_items_name_valedate }">	
+					                <input class="form-control" placeholder="{{ admin.edit_table_properties_panel.input_name.placeholder }}" name="{{ admin.edit_table_properties_panel.input_name.name }}" type="{{ admin.edit_table_properties_panel.input_name.type }}" v-model="input_update_items_name">
+					            </div>
+				            </div>   
+				            <div class="form-group">
+				            	<label class="col-md-4 control-label">{{ admin.edit_table_properties_panel.input_sort.label }}</label>
+				            	<div class="col-md-8" v-bind:class="{ 'has-error': input_update_items_sort_valedate }">	
+					                <input class="form-control" placeholder="{{ admin.edit_table_properties_panel.input_sort.placeholder }}" name="{{ admin.edit_table_properties_panel.input_sort.name }}" type="{{ admin.edit_table_properties_panel.input_sort.type }}" v-model="input_update_items_sort">
+					            </div>
+				            </div>                         	                	
+				    	</fieldset>        
+				    </div>    
+				    <div class="panel-footer">	
+				    	<input class="btn btn-success" type="submit" value="{{ admin.edit_table_properties_panel.update_button.title }}">
+				    </div>	         
+				</form>                                               
+            </div>                   
+        </div>	
+    </div>
+    
+    <div id="admin_loader" v-bind:class="{ 'admin_loading': admin_loading_show }"></div>    
+</div>

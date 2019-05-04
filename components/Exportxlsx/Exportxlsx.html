@@ -1,0 +1,54 @@
+<div class="container" id="Exportxlsx">
+	<h4 class="export_title">
+		{{ export.list_table_panel.title }}
+	</h4>
+	
+    <div class="row" id="export_container">
+    	<div class="col-md-12">
+    		<div class="panel panel-default" id="export_container_list_table" v-for="export_entity in export_list_entitys">
+	    		<div class="panel-heading">
+                    <h3 class="panel-title">
+                    	<table>
+                    		<tr>
+                    			<td>
+									<input 
+										class="export_entity export_entity_{{ export_entity.export_entity.ENTITY }}" 
+										type="checkbox" 
+										@change="check_entity($event, export_entity.export_entity.ENTITY)"
+									/> &nbsp;&nbsp;                   				
+                    			</td>
+                    			<td>
+                    				{{ export_entity.export_entity.NAME }}
+                    			</td>
+                    		</tr>
+                    	</table>			
+                	</h3>
+                </div>
+                <div class="panel-body">
+					<div class="row">
+				    	<div class="col-md-2" v-for="export_entity_prop in export_entity.export_properties">
+				    		<table>
+	                    		<tr>
+	                    			<td>
+										<input 
+											class="export_entity_prop export_entity_prop_{{ export_entity.export_entity.ENTITY }}_{{ export_entity_prop.PROPERTY }}" 
+											type="checkbox"
+											@change="check_entity_prop($event, export_entity.export_entity.ENTITY)"
+										/> &nbsp;&nbsp;                    				
+	                    			</td>
+	                    			<td>
+	                    				{{ export_entity_prop.NAME }}
+	                    			</td>
+	                    		</tr>
+	                    	</table>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<button type="button" class="btn btn-primary" @click="start_export();" >{{ export.list_table_panel.btn_export }}</button>
+
+    <div id="export_loader" v-bind:class="{ 'export_loading': export_loading_show }"></div>    
+</div>

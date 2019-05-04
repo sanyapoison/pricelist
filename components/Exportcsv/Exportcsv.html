@@ -1,0 +1,71 @@
+<div class="container" id="Exportcsv">
+	<h4 class="export_title">
+		{{ export.list_table_panel.title }}
+	</h4>
+	
+    <div class="row" id="export_container">
+    	<div class="col-md-12">
+    		<div class="panel panel-default" id="export_container_list_table">
+	    		<div class="panel-heading">
+                    <h3 class="panel-title">
+                    	<table>
+                    		<tr>
+                    			<td>
+                    				<div class="dropdown">
+									  	<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+									  		<span class="button_select_search_prop_title">{{ print_current_selected_entity() }}</span>&nbsp;&nbsp;<span class="caret"></span>
+									  	</button>&nbsp;&nbsp; 
+									  	<ul class="dropdown-menu">
+									    	<li v-for="export_entity in export_list_entitys" >
+									    		<a 
+									    			v-bind:class="{ 'selected_entity_item': selected_entity.export_entity.ENTITY == export_entity.export_entity.ENTITY }"
+									                @click="select_entity(export_entity)"
+									            >
+									        		{{ export_entity.export_entity.NAME }}
+									        	</a>
+									    	</li>
+									  	</ul>
+									</div> 									                  				
+                    			</td>
+                    			<td v-show="selected_entity != null">
+									{{ export.list_table_panel.check_all }} &nbsp;&nbsp;                   				
+                    			</td>
+                    			<td v-show="selected_entity != null">
+									<input 
+										type="checkbox" 
+										@change="check_entity($event)"
+										class="export_entity export_entity_{{ selected_entity.export_entity.ENTITY }}" 
+									/> &nbsp;&nbsp;                   				
+                    			</td>                    			
+                    		</tr>
+                    	</table>			
+                	</h3>
+                </div>
+                <div class="panel-body">
+					<div class="row">
+				    	<div class="col-md-2" v-for="export_entity_prop in selected_entity.export_properties" v-show="selected_entity != null">
+				    		<table>
+	                    		<tr>
+	                    			<td>
+										<input 
+											class="export_entity_prop export_entity_prop_{{ selected_entity.export_entity.ENTITY }}_{{ export_entity_prop.PROPERTY }}" 
+											type="checkbox"
+											@change="check_entity_prop($event)"
+										/> &nbsp;&nbsp;                    				
+	                    			</td>
+	                    			<td>
+	                    				{{ export_entity_prop.NAME }}
+	                    			</td>
+	                    		</tr>
+	                    	</table>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<button type="button" class="btn btn-primary" @click="start_export();" >{{ export.list_table_panel.btn_export }}</button>
+
+    <div id="export_loader" v-bind:class="{ 'export_loading': export_loading_show }"></div>    
+</div>

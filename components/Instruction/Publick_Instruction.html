@@ -1,0 +1,183 @@
+<div class="container" id="Instruction">
+    <div class="row" id="instruction_container">
+        <div class="col-md-3" id="publick_container_left">
+            <div class="panel panel-default" id="publick_container_list_sect">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ instruction.list_sect.title }}</h3>
+                </div>
+                <div class="panel-body panel-body-form-nopadd">
+                    <div id="list_sect" class="list-group">
+                        <a 
+                            class="list-group-item"                             
+                            v-bind:class="hasActiveClass('publick')" 
+                            @click="select_instruction('publick')"
+                        >                          
+                            <b class="list-group-item-name-container">
+                                <div class="list-group-item-name">
+                                    Таблицы
+                                </div>  
+                            </b>
+                        </a>   
+                        <a 
+                            class="list-group-item"                             
+                            v-bind:class="hasActiveClass('export_xlsx')" 
+                            @click="select_instruction('export_xlsx')"
+                        >                          
+                            <b class="list-group-item-name-container">
+                                <div class="list-group-item-name">
+                                    Экспорт в XLSX
+                                </div>  
+                            </b>
+                        </a>
+                        <a 
+                            class="list-group-item"                             
+                            v-bind:class="hasActiveClass('export_csv')" 
+                            @click="select_instruction('export_csv')"
+                        >                          
+                            <b class="list-group-item-name-container">
+                                <div class="list-group-item-name">
+                                    Экспорт в CSV
+                                </div>  
+                            </b>
+                        </a>                        
+                        <a 
+                            class="list-group-item"                             
+                            v-bind:class="hasActiveClass('export_pdf')" 
+                            @click="select_instruction('export_pdf')"
+                        >                          
+                            <b class="list-group-item-name-container">
+                                <div class="list-group-item-name">
+                                    Экспорт в PDF
+                                </div>  
+                            </b>
+                        </a>                                    
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9" id="publick_container_right">   
+            <div  class="instruction_container_info" v-if="isSelectedInstruction('publick')" >  <!-- Таблицы -->                                        
+                <p>            
+                    <b>Таблица</b> – совокупность столбцов и строк (записей), в которых упорядочено, хранится используемая информация.
+                </p>    
+
+                <br>
+                
+                <p>
+                    Для просмотра <b>имеющегося списка таблиц</b>, необходимо перейти в раздел «Таблицы»
+                </p>    
+                
+                <br>
+
+                <p>
+                    В списке таблиц можно просмотреть все имеющиеся таблицы. Для выбранной из списка таблицы возможны посмотр столбцов и записей (строк).
+                </p>    
+
+                <br>
+
+                <p>
+                    Для навигации по контенту доступны фильтр и постраничная навигация.
+                </p>                                    
+            </div>             
+
+            <div  class="instruction_container_info" v-if="isSelectedInstruction('export_xlsx')" >  <!-- Экспорт в XLSX -->       
+                <p>            
+                    <b>Расширение XLSX</b> – расширение с файлами данных, рекомендуется для открытия и редактирования в Microsoft Excel 2007 и выше, совместим с более старыми версиями Microsoft Excel и альтернативными офисными пакетами.
+                </p>    
+
+                <br>
+                
+                <p>                    
+                    После экcпорта таблицы, с ней  можно продолжить работу в оффлайн режиме (без доступа к интернету). 
+                </p>    
+
+                <br>
+                
+                <p>
+                    <i>
+                        <span style="color: red">Примечание</span>:  тип данных столбца менять не рекомендуется, иначе это скажется на работоспособности таблицы и приведет к ошибкам экспорта (например: если в типе данных столбца «Цена» у вас указаны только числа: 100,200,300 и т.д. – крайне не рекомендуется приписывать еще и валюту (руб, usd), название валюты может быть указано в наименовании столбца).
+                    </i>
+                </p>    
+
+                <br>
+                
+                <p>
+                    Экспорт таблицы:
+                    <br>
+
+                    <ul>
+                        <li>Перед началом экспорта необходимо выделить нужные таблицы и столбцы нажав на соответствующие чекбоксы</li>                 
+                        <li>Нажать на кнопку «Экспортировать»</li>
+                    </ul>    
+                </p>    
+
+                <br>
+                
+                <p>
+                    <i>
+                        <span style="color: red">Примечание</span>: Название таблицы экспортируется как название Листа в Excel.
+                    </i>
+                </p>    
+            </div>
+
+            <div  class="instruction_container_info" v-if="isSelectedInstruction('export_csv')" >  <!-- Экспорт в CSV -->     
+
+                <p>            
+                    <b>CSV</b> – текстовый формат, предназначенный для представления табличных данных.
+                </p>    
+
+                <br>
+                
+                <p>
+                    Перед началом экспорта необходимо:
+                    <br>
+
+                    <ul>
+                        <li>Выбрать нужную таблицу</li>
+                        <li>Выделить нужные столбцы</li>                 
+                        <li>Нажать на кнопку «Экспортировать»</li>
+                    </ul>    
+                </p>    
+
+                <br>
+                
+                <p>
+                    <i>
+                        <span style="color: red">Примечание</span>: Название таблицы экспортируется как название файла.
+                    </i>
+                </p>    
+            </div> 
+
+            <div  class="instruction_container_info" v-if="isSelectedInstruction('export_pdf')" >  <!-- Экспорт в PDF -->     
+
+                <p>            
+                    <b>Расширение PDF</b> – открытый формат электронных документов.
+                </p>    
+
+                <br>
+                
+                <p>
+                    Перед началом экспорта необходимо:
+                    <br>
+
+                    <ul>
+                        <li>Выбрать нужную таблицу</li>
+                        <li>Выделить нужные столбцы</li>                 
+                        <li>Нажать на кнопку «Экспортировать»</li>
+                    </ul>    
+                </p>    
+
+                <br>
+                
+                <p>
+                    <i>
+                        <span style="color: red">Примечание</span>: Название таблицы экспортируется как название файла и заголовок таблицы. Наименование столбцов и заголовка выделяется полужирным начертанием.
+                    </i>
+                </p>    
+            </div>                                                                                                   
+        </div>  
+    </div>
+
+    <div id="instruction_loader" v-bind:class="{ 'instruction_loading': instruction_loading_show }"></div>    
+</div>

@@ -1,0 +1,105 @@
+<div class="container" id="Importxlsx">
+    <!--
+    <h4 class="import_title">
+        {{ import.title }}
+    </h4>
+    -->
+
+    <div class="row" id="import_container">
+        <div class="col-md-12"> 
+
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">{{ import.labels.file }}</label>  
+                    <div class="col-md-4">
+                        <div class="input-group file-preview">
+                            <input type="text" class="form-control file-preview-filename" disabled="disabled" v-model="import_file_name"> 
+                            <span class="input-group-btn">
+                                
+                                <button type="button" class="btn btn-default file-preview-clear" v-if="import_file.length > 0" @click="clear_file()">
+                                    <i class="fa fa-times"></i> 
+                                    {{ import.buttons.btn_clear }}
+                                </button>
+
+                                <div class="btn btn-default file-preview-input">
+                                    <i class="fa fa-folder-open"></i>
+                                    <span class="file-preview-input-title"> 
+                                        {{ import.buttons.btn_open }} 
+                                    </span>
+                                    <input 
+                                        type="file" 
+                                        v-model="import_file"
+                                        @change="import_change_file($event)"
+                                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+                                    />
+                                </div>
+                            </span>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="form-group" v-if="isset_list_entytis(import_list_entitys)">
+                    <label class="col-md-3 control-label">{{ import.labels.all_data }}</label>
+                    <div class="col-md-4">
+                        <input type="checkbox" class="form_checkbox" v-model="import_all_data">
+                    </div>    
+                </div>
+
+                <div class="form-group" v-if="import_all_data == false">
+                    <label class="col-md-3 control-label">{{ import.labels.list_sheets }}</label>
+                    <div class="col-md-4">
+                        <select class="form-control" v-model="selected_sheet">                                                    
+                            <option 
+                                v-for="sheet in export_list_sheets" 
+                                v-bind:selected="sheet_set_selected(sheet)"
+                                value="{{sheet}}"
+                            >
+                                {{sheet}}
+                            </option>
+                        </select>
+                    </div>
+                </div>            
+
+                <!--
+                <div class="form-group" v-if="import_all_data == false">
+                    <label class="col-md-3 control-label">{{ import.labels.list_entitys }}</label>
+                    <div class="col-md-4">
+                        <select class="form-control" v-model="selected_entity">                                                    
+                            <option 
+                                v-for="entity in import_list_entitys" 
+                                v-bind:selected="entity_set_selected(entity)"
+                                value="{{entity.ENTITY}}"
+                            >
+                                {{entity.NAME}}
+                            </option>
+                        </select>
+                    </div>
+                </div> 
+                -->
+
+                <div class="form-group" v-if="import_all_data == false">
+                    <label class="col-md-3 control-label">{{ import.labels.struct }}</label>
+                    <div class="col-md-4">
+                        <input type="checkbox" class="form_checkbox" v-model="import_struct_entity">
+                    </div>    
+                </div>
+
+                <div class="form-group" v-if="import_all_data == false">
+                    <label class="col-md-3 control-label">{{ import.labels.data }}</label>
+                    <div class="col-md-4">
+                        <input type="checkbox" class="form_checkbox" v-model="import_data_entity">
+                    </div>    
+                </div>    
+
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary" @click="start_import();">{{ import.buttons.btn_import }}</button>   
+                    </div>    
+                </div> 
+            </form>         
+        </div>
+        
+    </div>
+
+    <div id="import_loader" v-bind:class="{ 'import_loading': import_loading_show }"></div>    
+</div>

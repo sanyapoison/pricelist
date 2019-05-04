@@ -1,0 +1,35 @@
+#Instruction{
+    margin: 0px;
+    padding: 0px;	
+    width: 100%;
+}
+
+#instruction_container{
+	position: relative;
+	z-index: 1;
+	margin: 0px;
+}
+
+#instruction_loader{
+	position: absolute;
+	z-index: 2;
+	display: none;
+	width: 100%;
+	height: 100%;	
+	overflow: hidden;
+	top: 0px;
+	background: rgba(0,0,0,0.05);	
+    opacity: 0;	
+    transition: opacity 1s ease-out;
+    cursor: wait;
+}
+
+#instruction_loader.instruction_loading{
+	display: block;	
+	opacity: 1;
+	transition: opacity 1s ease-out;
+}
+
+html{
+	overflow-x: hidden;
+}

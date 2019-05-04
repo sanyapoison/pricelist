@@ -1,0 +1,251 @@
+#Publick{
+    margin: 0px;
+    padding: 0px;	
+    width: 100%;
+}
+
+#publick_container{
+	position: relative;
+	z-index: 1;
+	margin: 0px;
+}
+
+#publick_loader{
+	position: absolute;
+	z-index: 2;
+	display: none;
+	width: 100%;
+	height: 100%;	
+	overflow: hidden;
+	top: 0px;
+	background: rgba(0,0,0,0.05);	
+    opacity: 0;	
+    transition: opacity 1s ease-out;
+    cursor: wait;
+}
+
+#publick_loader.publick_loading{
+	display: block;	
+	opacity: 1;
+	transition: opacity 1s ease-out;
+}
+
+.panel-body-form-nopadd{
+	padding-bottom: 0px;
+}
+
+#list_table .list-group-item{
+	cursor: pointer
+}
+
+#list_table .list-group-item-active{
+	background-color: #eaeaea !important;	
+}
+
+#publick_container_left{
+	padding-left: 0px;
+}
+
+#publick_container_right{
+	padding-right: 0px;
+	display: none;
+}
+
+#publick_container_right.show_current_table{
+	display: block;
+}
+
+#publick_container_right .item{
+	vertical-align: top;
+}
+
+#publick_container_right .option_oth{
+	width: 90px;
+}
+
+#publick_container_right .option_oth_pol{
+	width: 45px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#publick_container_right .option_oth_pol .fa-square-o{
+	font-size: 17px;
+    position: relative;
+    top: 1px;
+}
+
+
+#publick_container_right .input_add{
+    border-radius: 0;   
+    margin-top: 1px;
+}
+
+#publick_container_right tfoot .item {
+	padding: 0px;
+}
+
+#publick_container_right tfoot .button_add_item{
+	border-radius: 0;
+    margin-top: 1px;
+    position: relative;
+    right: -1px;
+    width: 100%;
+}
+
+#publick_container_right tfoot .item .form-group{
+    margin-bottom: 0px;
+}
+
+.dropdown_container_mod_item{
+	cursor: pointer;
+}
+
+.dropdown_container_mod_item .dropdown-menu{
+	margin-right: 30px;
+	margin-top: -20px;
+}
+
+.dropdown_container_mod_item .dropdown-menu a{	
+	cursor: pointer;
+}
+
+.dropdown_container_mod_item .dropdown-menu .fa-trash-o{
+	color: #d9534f;
+}
+
+.dropdown_container_mod_item .dropdown-menu .fa-pencil{
+	color: #ec971f;
+}
+
+.dropdown_container_mod_item .dropdown-menu .fa{
+	margin-right: 10px;
+}
+
+#publick_container_right .row_data_entity_item_edit{
+	background-color: #e6f7e2;
+}
+
+.row_data_entity_item_edit .item_data_entity_item{
+	padding: 0px;
+} 
+
+.row_data_entity_item_edit .item_data_entity_item .form-group{
+	margin-bottom: 0px;
+} 
+
+.row_data_entity_item_edit .item_data_entity_item .form-group input {
+	padding: 6px 7px;
+} 
+
+.row_data_entity_item_edit .option_oth_pol{
+	padding: 1px;
+}
+
+.row_data_entity_item_edit .option_oth_pol .btn{
+	border-radius: 0px;
+	width: 100%;
+	outline: none;
+}
+
+.row_data_entity_item_edit .option_oth_pol .btn.btn-basic{
+	border-color: #c1bfbf;
+}
+
+.panel-table-title{
+	width: 100%;
+}
+
+.panel-table-title td{
+	width: 33.3333333%;
+}
+
+#search_list{
+	margin-bottom: 0px;
+}
+
+.panel-table-title .pagination{
+	margin: 0px;
+}
+
+.pagination>li>a{
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#publick_container_current_table .input_search{
+	min-width: 150px;
+} 
+
+#publick_container_current_table .search_items_buttons{
+	z-index: 5;
+}
+
+#publick_container_current_table .close_search_items{
+    position: absolute;
+    left: -38px;
+}
+
+#publick_container_current_table .close_search_items i{
+	height: 34px;
+    width: 38px;
+    font-size: 17px;
+    line-height: 34px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#publick_container_current_table .close_search_items i:hover{
+	color: #a94442;
+}
+
+.table_nav{
+	height: 34px	
+}
+
+.table_nav a{
+    padding: 0px 12px;
+    line-height: 32px;	
+}
+
+#publick_container_current_table .button_select_search_prop{
+	min-width: 150px;
+    max-width: 150px;
+	display: -webkit-box; 
+	display: -moz-box;        
+	display: -ms-flexbox;     
+	display: -webkit-flex; 
+	display: flex;	
+}
+
+.button_select_search_prop .caret{
+    float: right;
+    margin-top: 8px;
+}
+
+.button_select_search_prop_title{
+	text-overflow: ellipsis;	
+    min-width: 108px;
+    max-width: 108px;
+    overflow: hidden;
+    display: block;
+}
+
+.selected_search_item{
+	color: #262626;
+    text-decoration: none;
+    background-color: #f2f2f2;	
+}
+
+#publick_container_current_table table .row_data_entity_item td:first-child::after {
+   content: "";
+   display: inline-block;
+   vertical-align: top;
+   min-height: 22px;
+}
+
+#publick_container_current_table table .row_data_entity_item_edit td:first-child::after {
+   display: none;
+}
+
+

@@ -1,0 +1,78 @@
+#Importcsv{
+    margin: 0px;
+    padding: 0px;	
+    width: 100%;
+}
+
+#import_container{
+	position: relative;
+	z-index: 1;
+	margin: 0px;
+}
+
+#import_loader{
+	position: absolute;
+	z-index: 2;
+	display: none;
+	width: 100%;
+	height: 100%;	
+	overflow: hidden;
+	top: 0px;
+	background: rgba(0,0,0,0.05);	
+    opacity: 0;	
+    transition: opacity 1s ease-out;
+    cursor: wait;
+}
+
+#import_loader.import_loading{
+	display: block;	
+	opacity: 1;
+	transition: opacity 1s ease-out;
+}
+
+.import_title{
+    margin-top: 0px;
+    margin-bottom: 20px;	
+}
+
+#import_container > .col-md-12{
+    padding-right: 0px;
+    padding-left: 0px;	
+}
+
+.file-preview-input {
+    position: relative;
+	overflow: hidden;
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.file-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.file-preview-input-title {
+    margin-left:2px;
+}
+
+.form_checkbox{
+	height: 20px;
+	width: 20px;
+}
+
+html{
+	overflow-x: hidden;
+}
+
+.form-horizontal .form-group {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}

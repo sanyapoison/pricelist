@@ -1,0 +1,15 @@
+<nav class="navbar navbar-default" role="navigation" id="Navbar">
+  	<div class="collapse navbar-collapse">
+	  	<ul class="nav navbar-nav">
+	  		<li v-for="link in controlAdmin(links)" v-bind:class="show_dropdown_class('dropdown', link)">
+		        <a href="{{ link.link }}" v-bind:class="show_dropdown_class('dropdown-toggle', link)" v-bind:data-toggle="show_dropdown_data('dropdown', link)">
+		        	{{ link.name }}
+		        	<b class="caret" v-show="show_dropdown(link)"></b>
+		        </a>
+		        <ul v-show="show_dropdown(link)" class="dropdown-menu">
+		          	<li v-for="link_dropdown in controlAdmin(link.dropdown)"><a href="{{ link_dropdown.link }}">{{ link_dropdown.name }}</a></li>
+		        </ul> 		  					  			
+	  		</li>			
+	  	</ul>
+	</div>  	
+</nav>

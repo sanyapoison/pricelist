@@ -1,0 +1,18 @@
+#Navbar.navbar {
+    min-height: 28px;
+}
+
+#Navbar .navbar-collapse {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#Navbar .nav>li>a {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    line-height: 24px;
+    position: relative;
+    display: block;
+    padding: 0px 9px;
+}
+
